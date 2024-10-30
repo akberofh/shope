@@ -4,10 +4,18 @@ const addUserTodo = async (req, res) => {
   try {
     const { title, body } = req.body;
 
+    let photo = '';
+
+    // Eğer bir fotoğraf dosyası mevcutsa base64 olarak dönüştür
+    if (req.file) {
+      photo = req.file.buffer.toString('base64');
+    }
+
     if (req.user) {
       const todo = await Todo.create({
         title,
         body,
+         photo,
         user_id: req.user._id,
       });
 

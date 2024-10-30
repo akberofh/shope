@@ -15,6 +15,11 @@ const todoSchema = mongoose.Schema(
       ref: "User",
       required: true,
     },
+    photo: {
+      type: String, // base64 encoded ucun string qebul edir
+   
+      default: '',
+    },
   },
   {
     timestamps: true,

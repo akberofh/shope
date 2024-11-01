@@ -11,6 +11,7 @@ const authUser = async (req, res) => {
       res.status(201).json({
         _id: user._id,
         name: user.name,
+        photo: user.photo,
         email: user.email,
       });
     } else {
@@ -25,6 +26,12 @@ const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    let photo = '';
+        
+    if (req.file) {
+        photo = req.file.buffer.toString('base64');
+    }
+
     const userExists = await User.findOne({ email });
 
     if (userExists) {
@@ -35,6 +42,7 @@ const registerUser = async (req, res) => {
     const user = await User.create({
       name,
       email,
+      photo,
       password,
     });
 
@@ -43,6 +51,7 @@ const registerUser = async (req, res) => {
       res.status(201).json({
         _id: user._id,
         email: user.email,
+        photo: user.photo,
         name: user.name,
       });
     } else {
@@ -72,6 +81,7 @@ const getUserProfile = async (req, res) => {
         _id: req.user._id,
         name: req.user.name,
         email: req.user.email,
+        photo: req.user.photo,
       });
     } else {
       res.status(404).json({ message: 'Kullanıcı Bulunamadı' });
@@ -88,6 +98,8 @@ const updateUserProfile = async (req, res) => {
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
+      user.photo = req.file ? req.file.buffer.toString('base64') : user.photo;
+
 
       if (req.body.password) {
         user.password = req.body.password;
@@ -99,6 +111,7 @@ const updateUserProfile = async (req, res) => {
         _id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
+        photo: updatedUser.photo,
       });
     } else {
       res.status(404).json({ message: 'Kullanıcı Bulunamadı' });

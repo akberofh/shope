@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const todoSchema = mongoose.Schema(
+const productSchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -26,6 +26,6 @@ const todoSchema = mongoose.Schema(
   }
 );
 
-const Todo = mongoose.model("Todo", todoSchema);
+const Product = mongoose.model("Product", productSchema);
 
-export default Todo;
+export default Product;

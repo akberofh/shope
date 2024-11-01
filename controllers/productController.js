@@ -1,6 +1,6 @@
-import Todo from "../models/todoModel.js";
+import Product from "../models/productModel.js";
 
-const addUserTodo = async (req, res) => {
+const addUserProduct = async (req, res) => {
   try {
     const { title, body } = req.body;
 
@@ -12,14 +12,14 @@ const addUserTodo = async (req, res) => {
     }
 
     if (req.user) {
-      const todo = await Todo.create({
+      const product = await Product.create({
         title,
         body,
          photo,
         user_id: req.user._id,
       });
 
-      res.status(201).json(todo);
+      res.status(201).json(product);
     } else {
       res.status(404).json({ message: 'User not found' });
     }
@@ -28,11 +28,11 @@ const addUserTodo = async (req, res) => {
   }
 };
 
-const getUserTodos = async (req, res) => {
+const getUserProduct = async (req, res) => {
     try {
       if (req.user) {
-        const userTodos = await Todo.find({ user_id: req.user._id });
-        res.status(200).json(userTodos);
+        const userProduct = await Product.find({ user_id: req.user._id });
+        res.status(200).json(userProduct);
       } else {
         res.status(404).json({ message: 'User not found' });
       }
@@ -41,16 +41,16 @@ const getUserTodos = async (req, res) => {
     }
   };
 
-const deleteUserTodo = async (req, res) => {
+const deleteUserProduct = async (req, res) => {
   try {
     if (req.user) {
-      const deleteTodo = await Todo.findById(req.params.id);
+      const deleteProduct = await Product.findById(req.params.id);
 
-      if (deleteTodo && deleteTodo.user_id.toString() === req.user._id.toString()) {
-        await Todo.deleteOne({ _id: req.params.id });
+      if (deleteProduct && deleteProduct.user_id.toString() === req.user._id.toString()) {
+        await Product.deleteOne({ _id: req.params.id });
         res.json({ message: `${req.params.id} id-li post silindi` });
       } else {
-        res.status(404).json({ message: 'Todo not found or unauthorized' });
+        res.status(404).json({ message: 'Product not found or unauthorized' });
       }
     } else {
       res.status(404).json({ message: 'User not found' });
@@ -60,4 +60,4 @@ const deleteUserTodo = async (req, res) => {
   }
 };
 
-export { addUserTodo, getUserTodos, deleteUserTodo };
+export { addUserProduct, getUserProduct, deleteUserProduct };

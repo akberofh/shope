@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.js';
 import todoRoutes from './routes/todoRoute.js';
+import productRoutes from './routes/productRoute.js';
 import connectDB from './config/db.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -21,6 +22,7 @@ connectDB();
 
 app.use('/api/users', userRoutes);
 app.use('/api/todos', todoRoutes);
+app.use('/api/product', productRoutes);
 
 app.get("/", (req, res) => {
   res.json({

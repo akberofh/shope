@@ -108,10 +108,21 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  try {
+      const allUsers = await User.find();
+      res.json({ allUsers });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export {
   authUser,
   registerUser,
   logoutUser,
+  getUser,
   getUserProfile,
   updateUserProfile,
 };

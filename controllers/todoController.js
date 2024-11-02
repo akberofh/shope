@@ -60,4 +60,28 @@ const deleteUserTodo = async (req, res) => {
   }
 };
 
-export { addUserTodo, getUserTodos, deleteUserTodo };
+const updateUserTodo = async (req, res) => {
+  try {
+    if (req.user) {
+      const todo = await Todo.findById(req.params.id);
+
+      if (todo && todo.user_id.toString() === req.user._id.toString()) {
+        todo.title = req.body.title || todo.title;
+        todo.body = req.body.body || todo.body;
+        todo.photo = req.file ? req.file.buffer.toString('base64') : todo.photo;
+
+        const updatedTodo = await todo.save();
+
+        res.json(updatedTodo);
+      } else {
+        res.status(404).json({ message: 'Todo not found or unauthorized' });
+      }
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { addUserTodo, getUserTodos, deleteUserTodo, updateUserTodo };

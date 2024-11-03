@@ -5,6 +5,7 @@ import {
   registerUser,
   logoutUser,
   updateUserProfile,
+  VerfiyEmail,
   getUserProfile,
 } from '../controllers/userController.js';
 import { userControlAuth } from '../middleware/authMiddleware.js';
@@ -14,6 +15,8 @@ const router = express.Router();
 
 router.post('/register', upload.single('photo'), registerUser);
 router.post('/auth', authUser);
+router.post('/verifyEmail', VerfiyEmail);
+
 router.post('/logout', logoutUser);
 router.get('/', getUser);
 router

@@ -20,6 +20,8 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
+
+
 app.use('/api/users', userRoutes);
 app.use('/api/todos', todoRoutes);
 app.use('/api/product', productRoutes);

@@ -10,9 +10,8 @@ import cors from 'cors';
 dotenv.config();
 
 const allowedOrigins = [
-  'http://localhost:3000',
   'https://akberofhh.vercel.app',
-  'https://shope-smoky.vercel.app',
+  
 ];
 
 const app = express();

@@ -2,7 +2,7 @@ import Product from "../models/productModel.js";
 
 const addUserProduct = async (req, res) => {
   try {
-    const { title, body } = req.body;
+    const { title, description, thumbnail, price, distance, catagory } = req.body;
 
     let photo = '';
 
@@ -14,8 +14,12 @@ const addUserProduct = async (req, res) => {
     if (req.user) {
       const product = await Product.create({
         title,
-        body,
-         photo,
+        description,
+        thumbnail,
+        price,
+        distance,
+        catagory,
+        photo,
         user_id: req.user._id,
       });
 

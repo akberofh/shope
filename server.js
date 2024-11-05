@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.js';
 import todoRoutes from './routes/todoRoute.js';
+import pubgRoutes from './routes/pubgRoute.js';
 import productRoutes from './routes/productRoute.js';
 import connectDB from './config/db.js';
 import cookieParser from 'cookie-parser';
@@ -10,8 +11,7 @@ import cors from 'cors';
 dotenv.config();
 
 const allowedOrigins = [
-  'https://akberofhh.vercel.app',
-  
+  'http://localhost:3000',
 ];
 
 const app = express();
@@ -35,6 +35,7 @@ app.use((req, res, next) => {
 
 app.use('/api/users', userRoutes);
 app.use('/api/todos', todoRoutes);
+app.use('/api/pubg', pubgRoutes );
 app.use('/api/product', productRoutes);
 
 app.get("/", (req, res) => {

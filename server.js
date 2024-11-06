@@ -11,7 +11,7 @@ import cors from 'cors';
 dotenv.config();
 
 const allowedOrigins = [
-  'https://akberofh-rentacar.vercel.app',
+  'http://localhost:3000',
 ];
 
 const app = express();

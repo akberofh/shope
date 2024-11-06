@@ -61,7 +61,7 @@ app.get("/", (req, res) => {
 app.post('/api/reviews', async (req, res) => {
   console.log('Request Body:', req.body);
 
-  const { rating, review, name, email, category } = req.body;
+  const { rating, review, name, email, catagory } = req.body;
 
   try {
     const newReview = new Review({ rating, review, name, email, catagory });

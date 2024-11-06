@@ -7,7 +7,7 @@ const app = express();
 
 // CORS ayarlarını localhost:3000 için yapılandırma
 const corsOptions = {
-  origin: 'https://akberofh-rentacar.vercel.app',
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200, // Bazı tarayıcılar için gerekli
 };
 

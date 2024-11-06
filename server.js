@@ -33,7 +33,7 @@ const reviewSchema = new mongoose.Schema({
   review: String,
   name: String,
   email: String,
-  category: String, // Corrected spelling: "category"
+  catagory: String, // Corrected spelling: "category"
 });
 
 const Review = mongoose.model('Review', reviewSchema); // Create the Review model
@@ -64,7 +64,7 @@ app.post('/api/reviews', async (req, res) => {
   const { rating, review, name, email, category } = req.body;
 
   try {
-    const newReview = new Review({ rating, review, name, email, category });
+    const newReview = new Review({ rating, review, name, email, catagory });
     await newReview.save();
     res.status(201).json(newReview);
   } catch (error) {

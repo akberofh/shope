@@ -15,7 +15,7 @@ dotenv.config();
 connectDB();
 
 const allowedOrigins = [
-  'https://akberofh-rentacar.vercel.app',
+  'https://akberofh-car-rental.vercel.app',
 ];
 
 const app = express();
